@@ -1,0 +1,465 @@
+
+
+# install packages
+
+install.packages("tidyverse")
+install.packages("meta")
+install.packages("metafor")
+
+
+library("tidyverse")
+library("meta")
+library("metafor")
+
+
+# import overall net ownership dataset
+
+library(readxl)
+own_overall <- read_excel("C:/Users/olatunji/Desktop/Data2/own_overall.xlsx")
+View(own_overall)
+
+
+# meta-analysis for overall net ownership (Focus)
+
+def <- metaprop(event = r, 
+                n = n,
+                data =own_overall,
+                studlab = Author, 
+                sm  = "PFT",
+                level = 0.95,
+                byvar = Focus,
+                comb.fixed =FALSE,
+                hakn=F,
+                method.tau="DL")
+
+summary(def)
+
+forest.meta(def, layout="RevMan5", xlab="Proportion", comb.r=T, comb.f=F, xlim = c(
+  0,1), fontsize=7, digits=3)
+
+
+
+# meta-analysis for overall net ownership (Year)
+
+def <- metaprop(event = r, 
+                n = n,
+                data =own_overall,
+                studlab = Author, 
+                sm  = "PFT",
+                level = 0.95,
+                byvar = Year,
+                comb.fixed =FALSE,
+                hakn=F,
+                method.tau="DL")
+
+summary(def)
+
+forest.meta(def, layout="RevMan5", xlab="Proportion", comb.r=T, comb.f=F, xlim = c(
+  0,1), fontsize=7, digits=3)
+
+
+# import overall use dataset
+
+library(readxl)
+use_overall <- read_excel("C:/Users/olatunji/Desktop/Data2/use_overall.xlsx")
+View(use_overall)
+
+# meta-analysis for overall net usage (Focus) 
+
+
+def <- metaprop(event = r, 
+                n = n,
+                data =use_overall,
+                studlab = Author, 
+                sm  = "PFT",
+                level = 0.95,
+                byvar = Focus,
+                comb.fixed =FALSE,
+                hakn=F,
+                method.tau="DL")
+
+summary(def)
+
+forest.meta(def, layout="RevMan5", xlab="Proportion", comb.r=T, comb.f=F, xlim = c(
+  0,1), fontsize=5, digits=3)
+
+
+# meta-analysis for overall net usage (Year) 
+
+
+def <- metaprop(event = r, 
+                n = n,
+                data =use_overall,
+                studlab = Author, 
+                sm  = "PFT",
+                level = 0.95,
+                byvar = Year,
+                comb.fixed =FALSE,
+                hakn=F,
+                method.tau="DL")
+
+summary(def)
+
+forest.meta(def, layout="RevMan5", xlab="Proportion", comb.r=T, comb.f=F, xlim = c(
+  0,1), fontsize=5, digits=3)
+
+
+# import children net use dataset
+
+library(readxl)
+use_child <- read_excel("C:/Users/olatunji/Desktop/Data2/use_child.xlsx")
+View(use_child)
+
+
+# meta-analysis for child net usage 
+
+
+def <- metaprop(event = r, 
+                 n = n,
+                 data =use_child,
+                 studlab = Author, 
+                 sm  = "PFT",
+                 level = 0.95,
+                 byvar = Net,
+                 comb.fixed =FALSE,
+                 hakn=F,
+                 method.tau="DL")
+
+def
+
+
+forest(def)
+
+
+
+
+# import women net use dataset
+
+library(readxl)
+use_women <- read_excel("C:/Users/olatunji/Desktop/Data2/use_women.xlsx")
+View(use_women)
+
+
+# meta-analysis for women net usage 
+
+
+def <- metaprop(event = r, 
+                n = n,
+                data =use_women,
+                studlab = Author, 
+                sm  = "PFT",
+                level = 0.95,
+                byvar = Net,
+                comb.fixed =FALSE,
+                hakn=F,
+                method.tau="DL")
+
+def
+
+
+forest(def)
+
+# import general net use dataset
+
+library(readxl)
+use_general <- read_excel("C:/Users/olatunji/Desktop/Data2/use_general.xlsx")
+View(use_general)
+
+
+# meta-analysis for general net usage 
+
+
+def <- metaprop(event = r, 
+                n = n,
+                data=use_general,
+                studlab = Author, 
+                sm  = "PFT",
+                level = 0.95,
+                byvar = Net,
+                comb.fixed =FALSE,
+                hakn=F,
+                method.tau="DL")
+
+def
+
+
+forest(def)
+
+
+
+# Meta-analysis for overall ownership (Focus)
+
+
+Number of studies combined: k = 107
+
+                     proportion           95%-CI
+Random effects model     0.7070 [0.6509; 0.7600]
+
+Quantifying heterogeneity:
+ tau^2 = 0.0995 [0.0538; 0.1048]; tau = 0.3154 [0.2319; 0.3237]
+ I^2 = 99.8%; H = 25.20 [24.75; 25.65]
+
+Test of heterogeneity:
+        Q d.f. p-value
+ 67293.88  106       0
+
+Results for subgroups (random effects model):
+                                        k proportion           95%-CI  tau^2    tau        Q   I^2
+Focus = Pregnant women                 16     0.6641 [0.5185; 0.7953] 0.0905 0.3008  1812.41 99.2%
+Focus = Children                        2     0.8703 [0.7168; 0.9699] 0.0187 0.1366    33.59 97.0%
+Focus = Under-five and pregnant women   2     0.4637 [0.0000; 1.0000] 0.3337 0.5777   623.37 99.8%
+Focus = General                        57     0.7037 [0.6237; 0.7778] 0.1059 0.3255 45966.29 99.9%
+Focus = Under-five                     23     0.7512 [0.6436; 0.8450] 0.0817 0.2858 10996.16 99.8%
+Focus = Women of child bearing age      4     0.6814 [0.5302; 0.8152] 0.0249 0.1577   442.53 99.3%
+Focus = School-aged children            3     0.7075 [0.4416; 0.9135] 0.0573 0.2394   321.14 99.4%
+
+Test for subgroup differences (random effects model):
+                    Q d.f. p-value
+Between groups   5.57    6  0.4736
+
+Details on meta-analytical method:
+- Inverse variance method
+- DerSimonian-Laird estimator for tau^2
+- Jackson method for confidence interval of tau^2 and tau
+- Freeman-Tukey double arcsine transformation
+
+
+
+## Meta-analysis for overall ownership (Year)
+
+Number of studies combined: k = 107
+
+                     proportion           95%-CI
+Random effects model     0.7070 [0.6509; 0.7600]
+
+Quantifying heterogeneity:
+ tau^2 = 0.0995 [0.0538; 0.1048]; tau = 0.3154 [0.2319; 0.3237]
+ I^2 = 99.8%; H = 25.20 [24.75; 25.65]
+
+Test of heterogeneity:
+        Q d.f. p-value
+ 67293.88  106       0
+
+Results for subgroups (random effects model):
+              k proportion           95%-CI  tau^2    tau        Q   I^2
+Year = 2011  12     0.5493 [0.4011; 0.6932] 0.0688 0.2623 12087.89 99.9%
+Year = 2012  17     0.7046 [0.6192; 0.7833] 0.0357 0.1888  3376.83 99.5%
+Year = 2013   6     0.7232 [0.4764; 0.9134] 0.1008 0.3175  2436.10 99.8%
+Year = 2014  12     0.5917 [0.3571; 0.8061] 0.1742 0.4174  5821.16 99.8%
+Year = 2015   9     0.6340 [0.4716; 0.7822] 0.0623 0.2495  1238.81 99.4%
+Year = 2016  15     0.7016 [0.6160; 0.7807] 0.0315 0.1775  2582.17 99.5%
+Year = 2017  13     0.7447 [0.5753; 0.8828] 0.1088 0.3298  4707.82 99.7%
+Year = 2018  11     0.8930 [0.8399; 0.9366] 0.0168 0.1298   568.25 98.2%
+Year = 2019   7     0.7856 [0.7636; 0.8069] 0.0007 0.0263    15.94 62.4%
+Year = 2020   5     0.7608 [0.6197; 0.8777] 0.0296 0.1720   152.66 97.4%
+
+Test for subgroup differences (random effects model):
+                     Q d.f.  p-value
+Between groups   39.98    9 < 0.0001
+
+Details on meta-analytical method:
+- Inverse variance method
+- DerSimonian-Laird estimator for tau^2
+- Jackson method for confidence interval of tau^2 and tau
+- Freeman-Tukey double arcsine transformation
+
+
+
+
+
+
+# meta-analysis for overall use
+
+
+Number of studies combined: k = 124
+
+                     proportion           95%-CI
+Random effects model     0.6254 [0.5787; 0.6710]
+
+Quantifying heterogeneity:
+ tau^2 = 0.0722 [0.0523; 0.0951]; tau = 0.2687 [0.2286; 0.3083]
+ I^2 = 99.6% [99.6%; 99.7%]; H = 16.68 [16.31; 17.06]
+
+Test of heterogeneity:
+        Q d.f. p-value
+ 34227.16  123       0
+
+Results for subgroups (random effects model):
+                                              k proportion           95%-CI  tau^2    tau        Q   I^2
+Focus = Children                              4     0.5948 [0.4332; 0.7464] 0.0268 0.1637   251.31 98.8%
+Focus = Under five and pregnant women         3     0.7401 [0.6493; 0.8217] 0.0062 0.0787    15.44 87.0%
+Focus = Mother of under-five and pregna ...   1     0.2364 [0.1999; 0.2748]     --     --     0.00    --
+Focus = General                              50     0.6603 [0.5800; 0.7363] 0.0881 0.2968 18345.93 99.7%
+Focus = Under-five                           27     0.6433 [0.5572; 0.7251] 0.0534 0.2311  5085.12 99.5%
+Focus = Pregnant women                       27     0.6016 [0.5040; 0.6954] 0.0660 0.2569  2515.95 99.0%
+Focus = Young people                          1     0.0427 [0.0284; 0.0596]     --     --     0.00    --
+Focus = Women of child bearing age            3     0.5723 [0.2499; 0.8637] 0.0866 0.2943   482.32 99.6%
+Focus = University students                   1     0.1660 [0.1230; 0.2140]     --     --     0.00    --
+Focus = School-aged children                  5     0.7450 [0.6195; 0.8528] 0.0234 0.1531   795.49 99.5%
+Focus = Neonates                              1     0.1966 [0.1413; 0.2585]     --     --     0.00    --
+Focus = Pregnant and newly delivered women    1     0.2820 [0.2581; 0.3065]     --     --     0.00    --
+
+Test for subgroup differences (random effects model):
+                      Q d.f.  p-value
+Between groups   697.84   11 < 0.0001
+
+
+
+
+# meta-analysis for overall net usage (Year)
+Number of studies combined: k = 124
+
+                     proportion           95%-CI
+Random effects model     0.6254 [0.5787; 0.6710]
+
+Quantifying heterogeneity:
+ tau^2 = 0.0722 [0.0523; 0.0951]; tau = 0.2687 [0.2286; 0.3083]
+ I^2 = 99.6% [99.6%; 99.7%]; H = 16.68 [16.31; 17.06]
+
+Test of heterogeneity:
+        Q d.f. p-value
+ 34227.16  123       0
+
+Results for subgroups (random effects model):
+              k proportion           95%-CI  tau^2    tau        Q   I^2
+Year = 2011  14     0.5325 [0.3916; 0.6709] 0.0716 0.2675  3481.36 99.6%
+Year = 2012  13     0.5574 [0.3838; 0.7241] 0.1020 0.3194  3954.55 99.7%
+Year = 2013   5     0.6289 [0.4777; 0.7683] 0.0290 0.1704   150.87 97.3%
+Year = 2014  15     0.6370 [0.4942; 0.7685] 0.0798 0.2825  2438.82 99.4%
+Year = 2015  13     0.7569 [0.6701; 0.8343] 0.0301 0.1734  1360.45 99.1%
+Year = 2016  19     0.5397 [0.3815; 0.6939] 0.1245 0.3528 14724.49 99.9%
+Year = 2017  17     0.6805 [0.5867; 0.7674] 0.0413 0.2031  2357.03 99.3%
+Year = 2018  10     0.6912 [0.5721; 0.7987] 0.0389 0.1972   695.11 98.7%
+Year = 2019   7     0.6591 [0.5440; 0.7653] 0.0246 0.1568   445.82 98.7%
+Year = 2020  10     0.5875 [0.3862; 0.7748] 0.1050 0.3241  1006.22 99.1%
+Year = 2021   1     0.8635 [0.8483; 0.8781]     --     --     0.00    --
+
+Test for subgroup differences (random effects model):
+                      Q d.f.  p-value
+Between groups   124.03   10 < 0.0001
+
+
+
+
+# meta-analysis net use child
+
+Number of studies combined: k = 42
+
+                     proportion           95%-CI
+Random effects model     0.6199 [0.5539; 0.6838]
+
+Quantifying heterogeneity:
+ tau^2 = 0.0482 [0.0433; 0.1235]; tau = 0.2195 [0.2080; 0.3514]
+ I^2 = 99.5% [99.5%; 99.6%]; H = 14.78 [14.17; 15.42]
+
+Test of heterogeneity:
+       Q d.f. p-value
+ 8955.96   41       0
+
+Results for subgroups (random effects model):
+                                        k proportion           95%-CI  tau^2    tau       Q   I^2
+Focus = Children                        4     0.5948 [0.4332; 0.7464] 0.0268 0.1637  251.31 98.8%
+Focus = Under five and pregnant women   3     0.7401 [0.6493; 0.8217] 0.0062 0.0787   15.44 87.0%
+Focus = Under-five                     27     0.6433 [0.5572; 0.7251] 0.0534 0.2311 5085.12 99.5%
+Focus = Young people                    1     0.0427 [0.0284; 0.0596]     --     --    0.00    --
+Focus = University students             1     0.1660 [0.1230; 0.2140]     --     --    0.00    --
+Focus = School-aged children            5     0.7450 [0.6195; 0.8528] 0.0234 0.1531  795.49 99.5%
+Focus = Neonates                        1     0.1966 [0.1413; 0.2585]     --     --    0.00    --
+
+Test for subgroup differences (random effects model):
+                      Q d.f.  p-value
+Between groups   504.13    6 < 0.0001
+
+Details on meta-analytical method:
+- Inverse variance method
+- DerSimonian-Laird estimator for tau^2
+- Jackson method for confidence interval of tau^2 and tau
+- Freeman-Tukey double arcsine transformation
+
+
+# meta-analysis for net use in children
+
+Number of studies combined: k = 42
+
+                     proportion           95%-CI
+Random effects model     0.6199 [0.5539; 0.6838]
+
+Quantifying heterogeneity:
+ tau^2 = 0.0482 [0.0433; 0.1235]; tau = 0.2195 [0.2080; 0.3514]
+ I^2 = 99.5% [99.5%; 99.6%]; H = 14.78 [14.17; 15.42]
+
+Test of heterogeneity:
+       Q d.f. p-value
+ 8955.96   41       0
+
+Results for subgroups (random effects model):
+                 k proportion           95%-CI  tau^2    tau       Q   I^2
+Net = ITN       30     0.5845 [0.4943; 0.6719] 0.0627 0.2504 7532.61 99.6%
+Net = LLIN       9     0.6762 [0.5727; 0.7717] 0.0263 0.1621 1107.74 99.3%
+Net = ITN/LLIN   3     0.7828 [0.6539; 0.8884] 0.0158 0.1256   88.17 97.7%
+
+Test for subgroup differences (random effects model):
+                    Q d.f. p-value
+Between groups   6.45    2  0.0398
+
+
+
+
+# meta-analysis net use women
+
+Number of studies combined: k = 32
+
+                     proportion           95%-CI
+Random effects model     0.5768 [0.4877; 0.6635]
+
+Quantifying heterogeneity:
+ tau^2 = 0.0649 [0.0435; 0.1348]; tau = 0.2547 [0.2085; 0.3672]
+ I^2 = 99.2% [99.1%; 99.3%]; H = 11.17 [10.53; 11.85]
+
+Test of heterogeneity:
+       Q d.f. p-value
+ 3868.10   31       0
+
+Results for subgroups (random effects model):
+             k proportion           95%-CI  tau^2    tau       Q   I^2
+Net = LLIN  10     0.6499 [0.4546; 0.8222] 0.1000 0.3162 1095.52 99.2%
+Net = ITN   22     0.5426 [0.4405; 0.6431] 0.0583 0.2414 2693.54 99.2%
+
+Test for subgroup differences (random effects model):
+                    Q d.f. p-value
+Between groups   0.93    1  0.3346
+
+
+
+# meta-analysis general net use
+
+Number of studies combined: k = 50
+
+                     proportion           95%-CI
+Random effects model     0.6603 [0.5800; 0.7363]
+
+Quantifying heterogeneity:
+ tau^2 = 0.0881 [0.0445; 0.1120]; tau = 0.2968 [0.2111; 0.3347]
+ I^2 = 99.7%; H = 19.35 [18.74; 19.98]
+
+Test of heterogeneity:
+        Q d.f. p-value
+ 18345.93   49       0
+
+Results for subgroups (random effects model):
+                 k proportion           95%-CI  tau^2    tau        Q
+Net = LLIN      24     0.6974 [0.5569; 0.8214] 0.1314 0.3626 11749.57
+Net = ITN       24     0.6388 [0.5350; 0.7364] 0.0687 0.2621  6294.79
+Net = ITN/LLIN   2     0.4591 [0.2940; 0.6289] 0.0150 0.1226    65.78
+                 I^2
+Net = LLIN     99.8%
+Net = ITN      99.6%
+Net = ITN/LLIN 98.5%
+
+Test for subgroup differences (random effects model):
+                    Q d.f. p-value
+Between groups   4.77    2  0.0923
+
+
+
+
